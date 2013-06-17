@@ -1,0 +1,8 @@
+# Let's not share the api key
+config.json
+
+# vim stuff
+*.swp
+
+# Mac junk
+.DS_store

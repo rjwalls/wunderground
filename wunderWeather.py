@@ -3,7 +3,20 @@
 import urllib2
 import json
 
-wurl = urllib2.urlopen("http://api.wunderground.com/api/<api-key-here>/conditions/astronomy/forecast/q/TX/KSAT.json")
+# The Wunderground API key should be stored in the file config.json.
+f = open('config.json', 'r')
+config_raw = f.read()
+f.close()
+
+config_json = json.loads(config_raw)
+api_key = config_json['api_key']
+state = config_json['state']
+city = config_json['city']
+
+url_raw = "http://api.wunderground.com/api/{0}/conditions/astronomy/forecast/q/{1}/{2}.json".format(
+        api_key, state, city)
+
+wurl = urllib2.urlopen(url_raw)
 json_string = wurl.read()
 parsed_json = json.loads(json_string)
 
@@ -19,6 +32,7 @@ sunrise_minute = parsed_json['moon_phase']['sunrise']['minute']
 sunset_hour = parsed_json['moon_phase']['sunset']['hour']
 sunset_minute = parsed_json['moon_phase']['sunset']['minute']
 
+print "Weather for {0}, {1}".format(city, state)
 print temp_f, "F"
 print conditions
 print "Humidity:", relative_humidity

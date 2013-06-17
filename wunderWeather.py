@@ -2,9 +2,11 @@
 
 import urllib2
 import json
+import os
 
-# The Wunderground API key should be stored in the file config.json.
-f = open('config.json', 'r')
+# The Wunderground API key, city, and state should be store in the home directory
+config_path = os.path.join(os.path.expanduser('~'), '.weather_config.json')
+f = open(config_path, 'r')
 config_raw = f.read()
 f.close()
 

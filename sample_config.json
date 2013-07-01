@@ -2,4 +2,5 @@
     "api_key" : "<INSERT_KEY_HERE>",
     "state" : "MA",
     "city" : "Amherst"
+    "scale" : "Celsius"
 }
